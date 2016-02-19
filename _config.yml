@@ -120,7 +120,7 @@ safe: false
 highlighter: pygments
 title: 杂技
 description: 不知老之将至
-theme: kunka
+theme: hack
 disqusname: 5321
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
