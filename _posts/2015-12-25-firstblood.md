@@ -6,7 +6,7 @@ category: 技术
 ---
 
 
-## FIRST BLOOD
+# FIRST BLOOD
 
 程序员电脑上一般都会有很多电子书籍，有的书名字都差不多，时间长了也不记得哪些书读过，哪些书没读过。
 初学Python，用它写了个小程序，生成bookList.txt文件来记录书籍是否读过：
@@ -17,8 +17,8 @@ category: 技术
 5、通过check_books.py “文件名”可查询该书籍是否已读；
 6、打开bookList.txt文件浏览查看书籍是否已读；
 7、同样可用于电影、电视剧记录，方法一样。
-代码：
-[python] view plain copy
+>代码：
+>>[python] view plain copy
 #-*-coding:utf-8 -*-  
 ##################################################################################  
 #file name:check_books.py  
