@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: First Blood
 comments: false
 category: 技术
