@@ -16,101 +16,101 @@ category: 技术
 5、通过checkbooks.py “文件名”可查询该书籍是否已读；<br>
 6、打开bookList.txt文件浏览查看书籍是否已读；<br>
 7、同样可用于电影、电视剧记录，方法一样。 <br>
-代码： 
+代码： <br>
 [python] view plain copy
 
-> #-*-coding:utf-8 -*-  
-##################################################################################  
-#file name:check_books.py  
-#功能：记录当前目录book是否已读，已读标记(*)，未读标记( )  
-#版本：v0.0  
-#第一次生成记录文件：check_books.py -create  
-#目录新增文件是更新记录文件：check_books.py  
-#查看某一书籍是否已读：check_books.py 文件名  
-##################################################################################  
-#待更新:文件夹迭代查询记录  
-################################################################################## 
-
-
-import os,sys
-
-def main():
-FILENAME = 'bookList.txt'
-bookmark_dict = {}
-
-pwd = os.path.dirname(__file__)  
-book_list = os.listdir(pwd)  
-MARK = "(*)"  
-NOTMARK = "( )"  
-
-try:  
-    is_create = sys.argv[1]  
-    #新建book list 文件，所有book初始化为未读  
-    if is_create == '-create':  
-        print "Create New book list!"  
-        create_book_list(FILE_NAME,book_list,NOTMARK)  
-        return  
-except IndexError,SyntaxError:    
-    print "Updating book list..."  
-
-updateFlag = False  
-book_mark_dict = read_book_list(FILE_NAME)  
-for book in book_list:  
-    if book_mark_dict.has_key(book): #book已经存在，不处理  
-        pass  
-    else: #book不存在，插入字典,初始化为未读  
-        print '%s do not exist,update the list...' %(book)  
-        updateFlag = True  
-        book_mark_dict[book] = NOTMARK  
-
-f = open(FILE_NAME,'w')  
-for book in book_mark_dict:  
-    f.write('%s%s%s' %(book_mark_dict[book],book,'\n'))  
-f.close()  
-
-#查询某一book已读标记  
-try:  
-    book_name = sys.argv[1]  
-    if book_name in book_list:  
-        print "Check the book %s read flag!" %(book_name)  
-        read_flag = book_mark_dict[book_name]  
-        if read_flag == MARK:  
-            print "You have read it!"  
-        elif read_flag == NOTMARK:  
-            print "You have not read it!"  
+***
+    #*-coding:utf-8 -*-  
+    ##################################################################################  
+    #file name:check_books.py  
+    #功能：记录当前目录book是否已读，已读标记(*)，未读标记( )  
+    #版本：v0.0  
+    #第一次生成记录文件：check_books.py -create  
+    #目录新增文件是更新记录文件：check_books.py  
+    #查看某一书籍是否已读：check_books.py 文件名  
+    ##################################################################################  
+    #待更新:文件夹迭代查询记录  
+    ################################################################################## 
+    
+    import os,sys
+    
+    def main():
+    FILENAME = 'bookList.txt'
+    bookmark_dict = {}
+    
+    pwd = os.path.dirname(__file__)  
+    book_list = os.listdir(pwd)  
+    MARK = "(*)"  
+    NOTMARK = "( )"  
+    
+    try:  
+        is_create = sys.argv[1]  
+        #新建book list 文件，所有book初始化为未读  
+        if is_create == '-create':  
+            print "Create New book list!"  
+            create_book_list(FILE_NAME,book_list,NOTMARK)  
+            return  
+    except IndexError,SyntaxError:    
+        print "Updating book list..."  
+    
+    updateFlag = False  
+    book_mark_dict = read_book_list(FILE_NAME)  
+    for book in book_list:  
+        if book_mark_dict.has_key(book): #book已经存在，不处理  
+            pass  
+        else: #book不存在，插入字典,初始化为未读  
+            print '%s do not exist,update the list...' %(book)  
+            updateFlag = True  
+            book_mark_dict[book] = NOTMARK  
+    
+    f = open(FILE_NAME,'w')  
+    for book in book_mark_dict:  
+        f.write('%s%s%s' %(book_mark_dict[book],book,'\n'))  
+    f.close()  
+    
+    #查询某一book已读标记  
+    try:  
+        book_name = sys.argv[1]  
+        if book_name in book_list:  
+            print "Check the book %s read flag!" %(book_name)  
+            read_flag = book_mark_dict[book_name]  
+            if read_flag == MARK:  
+                print "You have read it!"  
+            elif read_flag == NOTMARK:  
+                print "You have not read it!"  
+            else:  
+                print "Error!"  
+            return   
         else:  
-            print "Error!"  
-        return   
+            print 'You input book name error!'  
+            return  
+    except IndexError,SyntaxError:  
+        pass  
+    
+    if updateFlag == True:  
+        print "Update bookList finished!"  
     else:  
-        print 'You input book name error!'  
-        return  
-except IndexError,SyntaxError:  
-    pass  
-
-if updateFlag == True:  
-    print "Update bookList finished!"  
-else:  
-    print "No book to update!"  
-def createbooklist(filename,booklist,mark):
-f = open(filename,'w')
-for bookname in booklist:
-f.write('%s%s%s' %(mark,bookname,'\n'))
-f.close()
-
-读取book list文件，返回文件名和是否已读标记的键值对
-
-def readbooklist(filename):
-try:
-f = open(filename,'r')
-except IOError:
-print "BookList do not existed,Please Create bookList First!"
-print 'Input "check_books.py -create" to create bookList.txt'
-sys.exit()
-
-book_dict = {}  
-for eachLine in f.readlines():  
-    book_dict[eachLine[3:-1]] = eachLine[0:3]  
-f.close()  
-return book_dict  
-if name == 'main':
-main()
+        print "No book to update!"  
+    def createbooklist(filename,booklist,mark):
+    f = open(filename,'w')
+    for bookname in booklist:
+    f.write('%s%s%s' %(mark,bookname,'\n'))
+    f.close()
+    
+    读取book list文件，返回文件名和是否已读标记的键值对
+    
+    def readbooklist(filename):
+    try:
+    f = open(filename,'r')
+    except IOError:
+    print "BookList do not existed,Please Create bookList First!"
+    print 'Input "check_books.py -create" to create bookList.txt'
+    sys.exit()
+    
+    book_dict = {}  
+    for eachLine in f.readlines():  
+        book_dict[eachLine[3:-1]] = eachLine[0:3]  
+    f.close()  
+    return book_dict  
+    if name == 'main':
+    main()
